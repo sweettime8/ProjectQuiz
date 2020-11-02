@@ -1,0 +1,3 @@
+02-11-2020 17:03:46.117 INFO  c.m.P.ProjectQuizApplication.logStarting - Starting ProjectQuizApplication on DESKTOP-2U9UF8V with PID 11352 (E:\2.LEARN\ProjectExam\ProjectQuiz\target\classes started by Admin in E:\2.LEARN\ProjectExam\ProjectQuiz)
+02-11-2020 17:03:46.125 INFO  c.m.P.ProjectQuizApplication.logStartupProfileInfo - No active profile set, falling back to default profiles: default
+02-11-2020 17:03:48.840 INFO  c.m.P.ProjectQuizApplication.logStarted - Started ProjectQuizApplication in 3.123 seconds (JVM running for 3.491)
