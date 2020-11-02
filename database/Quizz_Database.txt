@@ -1,9 +1,12 @@
+Create database quiz;
+use quiz;
 CREATE TABLE user (
    id int NOT NULL AUTO_INCREMENT,       -- tự động tạo id tăng
    username VARCHAR(16) NOT NULL,
-   email VARCHAR(255) NULL,
    password VARCHAR(32) NOT NULL,
-   create_time TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP
+   email VARCHAR(255) NOT NULL,
+   role_name varchar(10) NOT NULL,
+   create_time TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
    PRIMARY KEY (id)
 );
 
@@ -11,7 +14,7 @@ CREATE TABLE quiz(
        id int NOT NULL AUTO_INCREMENT,       -- tự động tạo id tăng
        quiz_type char(2),                    -- Hình thức câu hỏi: M(4 dap an, chọn 1); N(nhiều DA, nhiều TL); D(điền đáp án)
        content nvarchar(300),                -- Nội dung câu hỏi
-       level char(1),                        -- 3 độ khó, 1(dễ), 2(trung bình), 3(khó)
+       level int,                            -- 3 độ khó, 1(dễ), 2(trung bình), 3(khó)
        PRIMARY KEY (id)
 );
 
@@ -27,10 +30,6 @@ create table result(						 -- bảng kết quả thi
        id int NOT NULL AUTO_INCREMENT,       -- tự động tạo id tăng
 	   user_id int,							 -- id user
        Diem float,							 -- kết quả user
-	   create_time TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP
+	   create_time TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
        PRIMARY KEY (id)
 );
-
-
-
-
