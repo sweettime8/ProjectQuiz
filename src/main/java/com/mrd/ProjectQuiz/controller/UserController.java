@@ -31,7 +31,7 @@ public class UserController {
     @Autowired
     UserRepository userRepository;
 
-    @RequestMapping(value = "/api/user/", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/user", method = RequestMethod.GET)
     public ResponseEntity<List<User>> getAllUser() {
         List<User> lstUser = userRepository.findAll();       
         return new ResponseEntity<>(lstUser, HttpStatus.CREATED);      

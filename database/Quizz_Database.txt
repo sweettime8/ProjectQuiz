@@ -13,8 +13,9 @@ CREATE TABLE user (
 CREATE TABLE quiz(
        id int NOT NULL AUTO_INCREMENT,       -- tự động tạo id tăng
        quiz_type char(2),                    -- Hình thức câu hỏi: M(4 dap an, chọn 1); N(nhiều DA, nhiều TL); D(điền đáp án)
-       content nvarchar(300),                -- Nội dung câu hỏi
-       level int,                            -- 3 độ khó, 1(dễ), 2(trung bình), 3(khó)
+	   level int,                            -- 3 độ khó, 1(dễ), 2(trung bình), 3(khó)
+	   score float,							 -- điểm câu hỏi
+	   content nvarchar(300),                -- Nội dung câu hỏi
        PRIMARY KEY (id)
 );
 
@@ -29,7 +30,48 @@ create table answer(						 -- bảng đáp án lưu thông tin đáp án
 create table result(						 -- bảng kết quả thi
        id int NOT NULL AUTO_INCREMENT,       -- tự động tạo id tăng
 	   user_id int,							 -- id user
-       Diem float,							 -- kết quả user
+	   max_score float,						 -- điểm chơi cao nhất
+	   score float,							 -- điểm đạt được	   
 	   create_time TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
        PRIMARY KEY (id)
 );
+
+
+
+
+
+
+==============insert data with postman ===============
+User : http://localhost:8080/api/user
+
+{ 
+     "username": "username1",
+     "password": "mrd123",
+     "role_name": "USER",
+     "email": "username1@gmail.com"
+}
+
+Quiz : http://localhost:8080/api/quiz
+
+{
+    "quiz_type" : "M",
+    "level" : 1,
+    "score" : 1,
+    "content" : "1 + 1 = ?"
+}
+{
+    "quiz_type" : "M",
+    "level" : 3,
+    "score" : 3,
+    "content" : "Chí phèo là người làng nào ?"
+}
+
+
+
+
+
+
+
+
+
+

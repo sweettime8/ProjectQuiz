@@ -27,5 +27,6 @@ public class Quiz {
     private String quiz_type;
     private String content;
     private int level;
+    private float score;
     
 }
