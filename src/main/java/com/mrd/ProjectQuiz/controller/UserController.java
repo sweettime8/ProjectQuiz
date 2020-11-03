@@ -5,7 +5,6 @@
  */
 package com.mrd.ProjectQuiz.controller;
 
-import com.mrd.ProjectQuiz.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.mrd.ProjectQuiz.model.User;
-import java.util.ArrayList;
+import com.mrd.ProjectQuiz.service.UserService;
 import java.util.List;
 
 /**
@@ -29,26 +28,26 @@ public class UserController {
     private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
     @Autowired
-    UserRepository userRepository;
+    UserService userService;
 
     @RequestMapping(value = "/api/user", method = RequestMethod.GET)
     public ResponseEntity<List<User>> getAllUser() {
-        List<User> lstUser = userRepository.findAll();       
+        List<User> lstUser = userService.findAll();       
         return new ResponseEntity<>(lstUser, HttpStatus.CREATED);      
     }
     
     @RequestMapping(value = "/api/user", method = RequestMethod.POST)
     public ResponseEntity<Object> create(@RequestBody User user) {
-        if (userRepository.existsByUsername(user.getUsername())) {
+        if (userService.existsByUsername(user.getUsername())) {
             LOGGER.info("username is exist !");
             return new ResponseEntity<>("username is exist !", HttpStatus.BAD_REQUEST);
         } 
-        if(userRepository.existsByEmail(user.getEmail())){
+        if(userService.existsByEmail(user.getEmail())){
             LOGGER.info("email is exist !");
             return new ResponseEntity<>("email is exist !", HttpStatus.BAD_REQUEST);
         }
         
-        userRepository.save(user);
+        userService.save(user);
       
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }

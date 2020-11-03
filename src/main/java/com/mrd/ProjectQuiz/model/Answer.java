@@ -24,4 +24,10 @@ public class Answer implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
+    private Long quiz_id;
+    private String content;
+    private Boolean correct;
+    
+    
 }

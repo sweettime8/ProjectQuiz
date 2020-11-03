@@ -5,32 +5,30 @@
  */
 package com.mrd.ProjectQuiz.repository.custom;
 
-import java.util.List;
+import com.mrd.ProjectQuiz.model.User;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityNotFoundException;
+import javax.persistence.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import com.mrd.ProjectQuiz.model.Quiz;
-import javax.persistence.EntityNotFoundException;
-import javax.persistence.NoResultException;
-import javax.persistence.Query;
 
 /**
  *
  * @author Admin
  */
 @Repository
-public class QuizRepositoryCustom {
+public class UserRepositoryCustom {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(QuizRepositoryCustom.class);
 
     private SessionFactory sessionFactory;
 
     @Autowired
-    public QuizRepositoryCustom(EntityManagerFactory factory) {
+    public UserRepositoryCustom(EntityManagerFactory factory) {
         if (factory.unwrap(SessionFactory.class) == null) {
             throw new NullPointerException("factory is not a hibernate factory");
         }
@@ -38,36 +36,19 @@ public class QuizRepositoryCustom {
         this.sessionFactory = factory.unwrap(SessionFactory.class);
     }
 
-    public Quiz findById(Long id) {
+    public User findById(Long id) {
         Session session = openSession();
-        Quiz quiz = null;
+        User user =null;
         try {
-            Query query = session.createNativeQuery("SELECT * FROM quiz WHERE id = ?", Quiz.class);
+            Query query = session.createNativeQuery("SELECT * FROM quiz WHERE id = ?", User.class);
             query.setParameter(1, id);
-            quiz = (Quiz) query.getSingleResult();
-
+            user = (User) query.getSingleResult();
         } catch (EntityNotFoundException ex) {
             LOGGER.error(ex.toString());
         } finally {
             closeSession(session);
         }
-        return quiz;
-    }
-
-    public List<Quiz> findByLevel(int level) {
-        Session session = openSession();
-        List<Quiz> lstLvl = null;
-        try {
-            Query query = session.createNativeQuery("SELECT * FROM quiz WHERE level = ?", Quiz.class);
-            query.setParameter(1, level);
-            lstLvl = query.getResultList();
-        } catch (NoResultException ex) {
-            LOGGER.error(ex.toString());
-        } finally {
-            closeSession(session);
-        }
-
-        return lstLvl;
+        return user;
     }
 
     private Session openSession() {

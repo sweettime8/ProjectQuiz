@@ -6,11 +6,11 @@
 package com.mrd.ProjectQuiz.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.mrd.ProjectQuiz.model.Quiz;
+import com.mrd.ProjectQuiz.model.Answer;
 /**
  *
  * @author Admin
  */
-public interface QuizRepository extends JpaRepository<Quiz, Long> {
-
+public interface AnswerRepository extends JpaRepository<Answer,Long> {
+    
 }

@@ -3,14 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mrd.ProjectQuiz.repository;
+package com.mrd.ProjectQuiz.service;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
 import com.mrd.ProjectQuiz.model.Quiz;
+
 /**
  *
  * @author Admin
  */
-public interface QuizRepository extends JpaRepository<Quiz, Long> {
+public interface QuizService {
 
+    Quiz findById(Long id);
+
+    List<Quiz> findByLevel(int level);
+
+    List<Quiz> findAll();
+
+    void save(Quiz quiz);
+
+    void delete(Quiz quiz);
 }
